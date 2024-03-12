@@ -3,7 +3,10 @@ package rocks.zipcodewilmington;
 import org.junit.Assert;
 import org.junit.Test;
 import rocks.zipcodewilmington.animals.Cat;
+import rocks.zipcodewilmington.animals.Dog;
+import rocks.zipcodewilmington.animals.animal_creation.AnimalFactory;
 import rocks.zipcodewilmington.animals.animal_storage.CatHouse;
+import rocks.zipcodewilmington.animals.animal_storage.DogHouse;
 
 import java.util.Date;
 
@@ -22,6 +25,7 @@ public class CatHouseTest {
         //Given
         String name = "Leo";
         Date birthDate = new Date(2015,5,12);
+        CatHouse.clear();
         Integer id = 0;
 
         //When
@@ -38,19 +42,19 @@ public class CatHouseTest {
         //Given
         String name = "Leo";
         Date birthDate = new Date(2015,5,12);
-        Integer id = 0;
+        //Integer id = 0;
+        CatHouse.clear();
+        Cat animal = AnimalFactory.createCat(name, birthDate);
 
         //When
-        CatHouse catHouse = new CatHouse();
-        Cat cat = new Cat(name, birthDate, id);
-        catHouse.add(cat);
-        Integer expectedCatsAdded =1;
-        Assert.assertEquals(expectedCatsAdded, catHouse.getNumberOfCats());
+        CatHouse.add(animal);
+        Integer expectedCats =1;
+        Assert.assertEquals(expectedCats, CatHouse.getNumberOfCats());
 
         //Then
-       catHouse.remove(id);
-       Integer expectedCats = 0;
-       Assert.assertEquals(expectedCats, catHouse.getNumberOfCats());
+        CatHouse.remove(animal.getId());
+        Integer expectedAfterRemove =0;
+        Assert.assertEquals(expectedAfterRemove, CatHouse.getNumberOfCats());
     }
 
     @Test
@@ -59,6 +63,7 @@ public class CatHouseTest {
         String name = "Leo";
         Date birthDate = new Date(2015,5,12);
         Integer id = 0;
+        CatHouse.clear();
 
         //When
         CatHouse catHouse = new CatHouse();

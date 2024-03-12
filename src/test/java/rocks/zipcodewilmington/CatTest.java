@@ -37,12 +37,10 @@ public class CatTest {
     @Test
     public void setName(){
         //Given
+        Cat cat = new Cat(null,null,null);
         String givenName = "Leo";
-        Date givenBirthDate = new Date();
-        Integer givenId = 0;
 
         //When
-        Cat cat = new Cat();
         cat.setName(givenName);
 
         //Then
@@ -65,12 +63,12 @@ public class CatTest {
 
     // TODO - Create tests for `setBirthDate(Date birthDate)`
     @Test
-    public void setbirthDate(){
+    public void setBirthDate(){
         //Given
         Date givenBirthDate = new Date();
 
         //When
-        Cat cat = new Cat();
+        Cat cat = new Cat(null,givenBirthDate,0);
         cat.setBirthDate(givenBirthDate);
 
         //Then
@@ -82,29 +80,31 @@ public class CatTest {
     @Test
     public void getId(){
         //Given
-        Integer givenId = 0;
-        Integer expectedId =1;
+
+        Integer expectedId =6;
 
         //When
-        Cat cat = new Cat();
+        Cat cat = new Cat(null,null,expectedId);
+        Integer actualId = cat.getId();
 
         //Then
-        Assert.assertEquals(givenId, expectedId);
+        Assert.assertEquals(expectedId, actualId);
 
     }
     // TODO - Create tests for `void eat(Food food)`
     @Test
     public void eatMeal(){
-        //Given
-        Date givenBirthDate = new Date();
+        Integer given =0;
+        Integer expected =1;
 
         //When
-        Cat cat = new Cat();
-        cat.setBirthDate(givenBirthDate);
+        Food food = new Food();
+        Cat cat = new Cat(null,null,0);
 
         //Then
-        Assert.assertEquals(givenBirthDate, cat.getBirthDate());
-
+        cat.eat(food);
+        Integer eatMeals = cat.getNumberOfMealsEaten();
+        Assert.assertEquals(expected, eatMeals);
     }
 
     // TODO - Create test to check Animal inheritance; google search `java instanceof keyword`
